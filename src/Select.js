@@ -36,6 +36,7 @@ var Select = React.createClass({
 		onBlur: React.PropTypes.func,              // onBlur handler: function(event) {}
 		onChange: React.PropTypes.func,            // onChange handler: function(newValue) {}
 		onFocus: React.PropTypes.func,             // onFocus handler: function(event) {}
+		onScroll: React.PropTypes.func,		   // onScroll handler: function(event) {}
 		onOptionLabelClick: React.PropTypes.func,  // onCLick handler for value labels: function (value, event) {}
 		optionRenderer: React.PropTypes.func,      // optionRenderer: function(option) {}
 		options: React.PropTypes.array,            // array of options
@@ -65,6 +66,7 @@ var Select = React.createClass({
 			addLabelText: 'Add {label} ?',
 			noResultsText: 'No results found',
 			onChange: undefined,
+			onScroll: undefined,
 			onOptionLabelClick: undefined,
 			options: undefined,
 			placeholder: 'Select...',
@@ -734,7 +736,8 @@ var Select = React.createClass({
 		if (this.state.isOpen) {
 			menuProps = {
 				ref: 'menu',
-				className: 'Select-menu'
+				className: 'Select-menu',
+				onScroll: this.props.onScroll
 			};
 			if (this.props.multi) {
 				menuProps.onMouseDown = this.handleMouseDown;
